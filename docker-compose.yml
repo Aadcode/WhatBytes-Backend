@@ -1,0 +1,19 @@
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: my_postgres_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - healthCareData:/var/lib/postgresql/data
+    env_file:
+      - .env  # Explicitly load environment variables from .env
+
+volumes:
+  healthCareData:
